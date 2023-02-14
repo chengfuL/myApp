@@ -1,0 +1,67 @@
+/* pages/ChatGPT.wxss */
+.input {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    padding: 0 20rpx;
+    align-items: center;
+    height: 80rpx;
+    box-sizing: border-box;
+}
+
+.input .inputText {
+    width: 600rpx;
+    border-radius: 10rpx;
+    height: 60rpx;
+    background-color: #FFFFFF;
+    border: 1rpx solid #E5E5EA;
+    padding: 0 10rpx;
+}
+
+.input button {
+    /* width: 40rpx; */
+    font-size: 28rpx;
+    white-space: nowrap;
+    margin-left: 20rpx;
+}
+
+.chat-page {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #F5F5F5;
+}
+
+.chat-container {
+    margin-top: 30rpx;
+    width: 95%;
+    /* max-width: 600rpx; */
+    background-color: #FFFFFF;
+    border-radius: 8rpx;
+    box-shadow: 0 3rpx 6rpx rgba(0, 0, 0, 0.16);
+    overflow: hidden;
+}
+
+.chat-message {
+    display: flex;
+    margin: 10rpx;
+    padding: 10rpx;
+    font-size: 32rpx;
+    width: fit-content;
+}
+
+.sent-message {
+    margin-left: auto;
+    color: #FFFFFF;
+    background-color: #008CBA;
+    border-radius: 20rpx 20rpx 0 20rpx;
+}
+
+.received-message {
+    margin-right: auto;
+    color: #000000;
+    background-color: #E5E5EA;
+    border-radius: 20rpx 20rpx 20rpx 0;
+}

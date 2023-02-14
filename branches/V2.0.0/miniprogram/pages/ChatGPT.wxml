@@ -1,0 +1,14 @@
+<!--pages/ChatGPT.wxml-->
+<view class="chat-page">
+    <view class="chat-container">
+        <block wx:for="{{messages}}" wx:key="id">
+            <view class="{{item.isSent ? 'sent-message chat-message' : 'received-message chat-message' }}">
+                <text>{{item.content}}</text>
+            </view>
+        </block>
+    </view>
+    <view class="input">
+        <input class="inputText" value="{{ text }}" type="text" bindinput="bindinput" placeholder="请输入消息" disabled="{{isWait}}" />
+        <button type="primary" size="mini" bindtap="sendMessage" disabled="{{isWait}}">发送</button>
+    </view>
+</view>
