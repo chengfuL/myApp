@@ -1,4 +1,5 @@
 // pages/ChatGPT.js
+const app = getApp();
 Page({
 
     /**
@@ -10,7 +11,10 @@ Page({
         messages: [{
             id: 0,
             isSent: false,
-            content: "有什么可以帮助你"
+            content: app.towxml("有什么可以帮到你？",'markdown',{
+                theme:'light', //主题 dark 黑色，light白色，不填默认是light
+                base:"www.xxx.com",
+              })
         }],
         messageStr: "",
         messageArr: []
@@ -55,21 +59,25 @@ Page({
             // messageStr: this.data.messageStr + "\nHuman:" + this.data.text,
             messageArr: [...this.data.messageArr, {
                 role: "user",
-                content: this.data.text
+                content:this.data.text
             }],
             messages: [...this.data.messages, {
                 id: this.data.messages.length,
                 isSent: true,
-                content: this.data.text
+                content: app.towxml(this.data.text,'markdown',{
+                    theme:'dark', //主题 dark 黑色，light白色，不填默认是light
+                    base:"www.xxx.com",
+                  }) 
             }]
         })
         // return
         // 在需要使用ChatGPT的地方调用sendRequest函数
         this.sendRequest(this.data.messageArr, (answer) => {
             // 将返回的答案展示给用户
-            console.log(answer);
-            let answerStr = answer.content.replace(/\n/, "")
-            answerStr = answerStr.replace(/\n/, "")
+            console.log(answer,11);
+            let answerStr = answer.content
+            // .replace(/\n/, "")
+            // answerStr = answerStr.replace(/\n/, "")
             if (answer == "网络超时") {
                 wx.showToast({
                     title: '网络超时',
@@ -85,7 +93,10 @@ Page({
                 messages: [...this.data.messages, {
                     id: this.data.messages.length,
                     isSent: false,
-                    content: answerStr || "我目前回答不了你这个问题，换个问题试试吧"
+                    content:app.towxml(answerStr || "我目前回答不了你这个问题，换个问题试试吧",'markdown',{
+                        theme:'light', //主题 dark 黑色，light白色，不填默认是light
+                        base:"www.xxx.com",
+                      })  
                 }]
             })
         });
@@ -104,7 +115,7 @@ Page({
             (res) => {
                 let result = res.result;
                 console.log(result);
-                callback(result);
+                callback(JSON.parse(result));
             }
         ).catch((error) => {
             console.log(error);

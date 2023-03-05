@@ -3,7 +3,7 @@
     <view class="chat-container">
         <block wx:for="{{messages}}" wx:key="id">
             <view class="{{item.isSent ? 'sent-message chat-message' : 'received-message chat-message' }}">
-                <text>{{item.content}}</text>
+                <towxml nodes="{{item.content}}"/>
             </view>
         </block>
     </view>

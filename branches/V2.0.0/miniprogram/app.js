@@ -1,4 +1,5 @@
 App({
+    towxml:require('/towxml/index'),
     async onLaunch(option) {
         // 初始化
         this.initcloud()

@@ -7,7 +7,7 @@ cloud.init({
 
 // 云函数入口函数
 exports.main = async (context) => {
-    const url = "http://116.233.110.0:9999/api/chatapi"
+    const url = "http://2768a599.r1.cpolar.top/api/chatapi"
 
     const data = {
         "messages": context.prompt,
