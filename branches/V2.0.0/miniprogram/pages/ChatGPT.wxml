@@ -8,7 +8,7 @@
         </block>
     </view>
     <view class="input">
-        <input class="inputText" value="{{ text }}" type="text" bindinput="bindinput" placeholder="请输入消息" disabled="{{isWait}}" />
+        <input class="inputText" adjust-position="{{true}}" value="{{ text }}" type="text" bindinput="bindinput" placeholder="请输入消息" disabled="{{isWait}}" />
         <button type="primary" size="mini" bindtap="sendMessage" disabled="{{isWait}}">发送</button>
     </view>
 </view>

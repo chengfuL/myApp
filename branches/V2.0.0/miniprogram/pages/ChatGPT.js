@@ -12,7 +12,8 @@ Page({
             isSent: false,
             content: "有什么可以帮助你"
         }],
-        messageStr: ""
+        messageStr: "",
+        messageArr: []
     },
 
     /**
@@ -51,7 +52,11 @@ Page({
         this.setData({
             text: "等待回复中...",
             isWait: true,
-            messageStr: this.data.messageStr + "\nHuman:" + this.data.text,
+            // messageStr: this.data.messageStr + "\nHuman:" + this.data.text,
+            messageArr: [...this.data.messageArr, {
+                role: "user",
+                content: this.data.text
+            }],
             messages: [...this.data.messages, {
                 id: this.data.messages.length,
                 isSent: true,
@@ -60,23 +65,27 @@ Page({
         })
         // return
         // 在需要使用ChatGPT的地方调用sendRequest函数
-        this.sendRequest(this.data.messageStr, (answer) => {
+        this.sendRequest(this.data.messageArr, (answer) => {
             // 将返回的答案展示给用户
             console.log(answer);
+            let answerStr = answer.content.replace(/\n/, "")
+            answerStr = answerStr.replace(/\n/, "")
             if (answer == "网络超时") {
                 wx.showToast({
                     title: '网络超时',
                     icon: 'none'
                 });
+                answerStr = ""
             }
             this.setData({
                 text: "",
                 isWait: false,
-                messageStr: this.data.messageStr + answer,
+                // messageStr: this.data.messageStr + answerStr,
+                messageArr: answer.role ? [...this.data.messageArr, answer] : this.data.messageArr,
                 messages: [...this.data.messages, {
                     id: this.data.messages.length,
                     isSent: false,
-                    content: answer
+                    content: answerStr || "我目前回答不了你这个问题，换个问题试试吧"
                 }]
             })
         });
@@ -93,19 +102,15 @@ Page({
             }
         }).then(
             (res) => {
-                const result = res.result;
+                let result = res.result;
                 console.log(result);
-                if (result.choices) {
-                    const answer = result.choices[0].text;
-                    // 调用回调函数，将解析后的数据传递给它
-                    callback(answer);
-                } else {
-                    callback("网络超时")
-                }
+                callback(result);
             }
         ).catch((error) => {
             console.log(error);
-            callback("网络超时")
+            callback({
+                content: "网络超时"
+            })
         })
     },
     /**

@@ -1,9 +1,5 @@
 {
     "description": "项目配置文件，详见文档：https://developers.weixin.qq.com/miniprogram/dev/devtools/projectconfig.html",
-    "packOptions": {
-        "ignore": [],
-        "include": []
-    },
     "setting": {
         "urlCheck": true,
         "es6": false,
@@ -24,8 +20,6 @@
         "compileHotReLoad": false,
         "lazyloadPlaceholderEnable": false,
         "useMultiFrameRuntime": true,
-        "useApiHook": true,
-        "useApiHostProcess": true,
         "babelSetting": {
             "ignore": [],
             "disablePlugins": [],
@@ -43,10 +37,7 @@
         "ignoreUploadUnusedFiles": true,
         "useStaticServer": true
     },
-    "compileType": "game",
-    "libVersion": "2.14.1",
-    "appid": "wx6ac3f5090a6b99c5",
-    "projectname": "DailyMissions",
+    "compileType": "miniprogram",
     "miniprogramRoot": "miniprogram/",
     "cloudfunctionRoot": "cloudfunctions/",
     "cloudfunctionTemplateRoot": "cloudfunctionTemplate/",
@@ -56,5 +47,10 @@
         "tabIndent": "insertSpaces",
         "tabSize": 4
     },
-    "isGameTourist": true
+    "libVersion": "2.14.1",
+    "packOptions": {
+        "ignore": [],
+        "include": []
+    },
+    "appid": "wx2411e1bba57423ac"
 }
